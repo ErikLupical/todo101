@@ -1,14 +1,16 @@
-version: "1.0"
+version: "3.9"
 
 services:
-  image: mongo
-  ports:
-    - "27017:27017"
-  volumes:
-    - ./data:/data/db
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
 
   todo-backend:
     build: ./backend
+    image: todo101-todo-backend:latest
     ports:
       - "15000:15000"
     environment:
@@ -18,6 +20,7 @@ services:
   
   todo-frontend:
     build: ./frontend
+    image: todo101-todo-frontend:latest
     ports:
       - "3000:3000"
     depends_on:
